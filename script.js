@@ -79,12 +79,15 @@ client.Dispatcher.on("MESSAGE_CREATE", e => {
 client.Dispatcher.on("MESSAGE_CREATE", e => {
   if (e.message.content == "!chess join")
     {
+        console.log("MESSAGE chess join");
+        console.log("inGame is " + inGame);
         if(inGame == true)
         {
             e.message.channel.sendMessage("You cannot join a game that is currently going on.");
         }
         else if(inGame ==false)
         {
+            console.log("newGame is preparing...");
             p2 = e.message.author;
             newGame = new game(p1,p2);
             newGame.init();
@@ -93,6 +96,7 @@ client.Dispatcher.on("MESSAGE_CREATE", e => {
                 e.message.channel.uploadFile("out.png");
                 e.message.channel.sendMessage("Game Prepared!");
             }); }, 500);
+            console.log("Done ==========");
         }
     }
 });
